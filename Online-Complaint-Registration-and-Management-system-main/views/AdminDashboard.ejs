@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FixIt | Online-Complaint-Registration-and-Management-system</title>
+    <!-- icon -->
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <style>
+        .dropdown-container {
+            width: 50%;
+            display: flex;
+            justify-content: end;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark"">
+            <div class=" container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item pt-1 pe-4">
+                    <a class="nav-link active" href="/admin/user-list">User list</a>
+                </li>
+                <li class="nav-item pt-1 pe-4">
+                    <a class="nav-link active" href="/admin/appoint-officer">Appoint Officer</a>
+                </li>
+            </ul>
+            <a>
+                <button class="btn btn-outline-light logout_btn" type="submit">
+                    Logout
+                </button>
+            </a>
+        </div>
+        </div>
+
+    </nav>
+
+    <div class="container complaints d-flex justify-content-center mt-3">
+        <div>
+            <% complaints.forEach(e=> { %>
+
+                <form action="/admin-complaint/<%=e._id %>" method="post">
+                    <div class="date">
+                        <p>
+                            <%= e.date %>
+
+                        </p>
+                    </div>
+                    <div class="card border-dark mb-1" style="max-width:
+                                25rem;">
+                        <div class="card-header bg-transparent
+                                    border-success">
+                            <h5 class="card-title">
+                                <%= e.title %>
+                                    <a href="
+                                            <%= e.imageURL %> ">
+                                        <button type="button" class="btn
+                                                    btn-sm
+                                                    btn-outline-warning
+                                                    text-dark ms-3">View Image
+                                            👀</button></a>
+                            </h5>
+                        </div>
+                        <div class="card-body text-dark">
+                            <p class="card-text address">
+                                <%= e.address %> <a href="<%=
+                                                    e.gMapURL %>"><i class="bi
+                                                        bi-geo-alt"></i></a>
+                            </p>
+                            <div class="approval d-flex
+                                                justify-content-between">
+                                <div>
+                                    <p style="font-weight:500;">Approval
+                                        :-
+                                    </p>
+                                </div>
+
+                                <% if (e.approvalStatus==="Pending" ) { %>
+                                    <div class="form-check
+                                                        form-check-inline">
+                                        <input class="form-check-input
+                                                            border
+                                                            border-secondary" type="radio" name="approval"
+                                            id="inlineRadio1" value="Pending" checked>
+                                        <label class="form-check-label" for="inlineRadio1">Pending</label>
+                                    </div>
+                                    <div class="form-check
+                                                        form-check-inline">
+                                        <input class="form-check-input
+                                                            border
+                                                            border-secondary" type="radio" name="approval"
+                                            id="inlineRadio1" value="Yes">
+                                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                    </div>
+                                    <div class="form-check
+                                                        form-check-inline">
+                                        <input class="form-check-input
+                                                            border
+                                                            border-secondary" type="radio" name="approval"
+                                            id="inlineRadio2" value="No">
+                                        <label class="form-check-label" for="inlineRadio2">No</label>
+                                    </div>
+                                    <!-- Approval -->
+                                    <% } else if (e.approvalStatus==="Yes" ) { %>
+                                        <div class="form-check
+                                                            form-check-inline">
+                                            <input class="form-check-input
+                                                                border
+                                                                border-secondary" type="radio" name="approval"
+                                                id="inlineRadio1" value="Pending">
+                                            <label class="form-check-label" for="inlineRadio1">Pending</label>
+                                        </div>
+                                        <div class="form-check
+                                                            form-check-inline">
+                                            <input class="form-check-input
+                                                                border
+                                                                border-secondary" type="radio" name="approval"
+                                                id="inlineRadio1" value="Yes" checked>
+                                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                        </div>
+                                        <div class="form-check
+                                                            form-check-inline">
+                                            <input class="form-check-input
+                                                                border
+                                                                border-secondary" type="radio" name="approval"
+                                                id="inlineRadio2" value="No">
+                                            <label class="form-check-label" for="inlineRadio2">No</label>
+                                        </div>
+
+                                        <% } else { %>
+
+                                            <div class="form-check
+                                                                form-check-inline">
+                                                <input class="form-check-input
+                                                                    border
+                                                                    border-secondary" type="radio" name="approval"
+                                                    id="inlineRadio1" value="Pending">
+                                                <label class="form-check-label" for="inlineRadio1">Pending</label>
+                                            </div>
+                                            <div class="form-check
+                                                                form-check-inline">
+                                                <input class="form-check-input
+                                                                    border
+                                                                    border-secondary" type="radio" name="approval"
+                                                    id="inlineRadio1" value="Yes">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check
+                                                                form-check-inline">
+                                                <input class="form-check-input
+                                                                    border
+                                                                    border-secondary" type="radio" name="approval"
+                                                    id="inlineRadio2" value="No" checked>
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                            <% } %>
+
+                            </div>
+                            <div class="current_work_status">
+                                <p style="font-weight:500;">Current Work Status : <span
+                                        style="font-weight:400;color: rgb(71, 70, 70);">
+                                        <%= e.workStatus %>
+                                    </span></p>
+                            </div>
+
+                            <div class="workStatus
+                                                                d-flex
+                                                                justify-content-between">
+                                <div>
+                                    <p style="font-weight:500;">Set Work
+                                        Status
+                                        :
+                                    </p>
+                                </div>
+                                <div>
+                                    <select name="workStatus">
+                                        <option>~</option>
+                                        <option value="-">Unset
+                                        </option>
+                                        <option value="Started">Work
+                                            Started
+                                        </option>
+                                        <option value="Finished">Work
+                                            Finished</option>
+                                    </select>
+                                </div>
+                                <div> <a
+                                        href="
+                                                                        https://res.cloudinary.com/dmkoxe2gk/image/upload/v1680252492/foeoknmxaq7zw8dgyt8f.jpg">
+                                        <button type="button" class="btn
+                                                                            btn-sm
+                                                                            btn-outline-warning
+                                                                            text-dark
+                                                                            ms-3">👀</button></a></div>
+                            </div>
+                            <div class="appointed_officer">
+                                <p style="font-weight:500;">Appointed Officer : <span
+                                        style="font-weight:400;color: rgb(71, 70, 70);">
+                                        <%= e.officerAppointed %>
+                                    </span></p>
+                            </div>
+                            <div class="officerAppointed
+                                                                d-flex
+                                                                justify-content-start">
+                                <div>
+                                    <p style="font-weight:500;">Appoint Officer
+
+                                        :
+                                    </p>
+                                </div>
+                                <div class="ms-3">
+                                    <select name="officer">
+                                        <option>~</option>
+                                        <option value="-">Unselect</option>
+                                       <% officers.forEach(e => { %>
+                                         <option value="<%= e.officerName %>"><%= e.officerName %></option>
+                                       <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer
+                                                            bg-transparent
+                                                            border-success
+                                                            d-flex
+                                                            justify-content-end">
+
+
+                            <button type="submit" class="btn
+                                                                btn-primary
+                                                                btn-sm
+                                                                ">Commite
+                                Change</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-between" style="margin-bottom: 15px;">
+                    <form action="/admin-user-dashboard-delete" method="post">
+                        <button type="submit" class="btn
+                                                                    btn-outline-dark
+                                                                    btn-sm
+                                                                    " name="button" value="dashboard" ><i
+                                class="bi bi-person-circle"></i> User-Profile</button>
+                                <input type="hidden"
+                                                        name="userId" value="<%=
+                                                        e.userID %>">
+                    </form>
+                    <form action="/delete-complaint/<%=e.id%>" method="post" name="myform">
+                        <button type="submit" class="btn btn-dark btn-sm" name="dashboard" value="adminDashboard"> <i
+                                class="bi bi-trash"></i></button>
+                    </form>
+                </div>
+
+                <% }) %>
+
+        </div>
+
+    </div>
+    <script>
+        let logout_btn = document.querySelector(".logout_btn")
+        logout_btn.addEventListener("click", () => {
+            window.location.replace("/sub-pages/login.html");
+        }
+        )
+    </script>
+</body>
+
+</html>

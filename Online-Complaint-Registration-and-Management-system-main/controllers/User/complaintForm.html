@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FixIt | Register Complaint</title>
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: whitesmoke;
+      }
+      .container {
+        width: 70%;
+        background-color: rgba(255, 255, 255, 0.459);
+        border-radius: 10px;
+        padding: 5%;
+      }
+    </style>
+    <script>
+      const queryString = new URL(window.location.toLocaleString());
+      // const urlParams = new URLSearchParams(queryString);
+
+      console.log(queryString.pathname);
+      window.onload = function () {
+        document.myform.action = get_action();
+      };
+
+      function get_action() {
+        return queryString.pathname;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <form method="post" name="myform" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+          <input
+            name="complaint"
+            required
+            type="text"
+            class="form-control"
+            id="complaint"
+            placeholder="Complaint"
+          />
+          <label for="complaint">Complaint</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea
+            name="address"
+            required
+            class="form-control"
+            placeholder="Address"
+            id="address"
+            style="height: 100px"
+          ></textarea>
+          <label for="address">Address</label>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="form-floating mb-3">
+              <input
+                name="addressURL"
+                required
+                type="url"
+                class="form-control"
+                id="map"
+                placeholder="Google map"
+              />
+              <label for="map">Google Map URL</label>
+            </div>
+          </div>
+          <div class="col-4 d-flex align-items-center">
+            <a href="https://www.google.com/maps/" target="”_blank”">
+              <button type="button" class="btn btn-outline-info btn-sm">
+                Open Map 🌍
+              </button></a
+            >
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-check col-6">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="gridCheck"
+              required
+            />
+            <label class="form-check-label" for="gridCheck">
+              I agree to
+              <a href="" style="text-decoration: none">terms and conditions</a>
+            </label>
+          </div>
+          <div class="col-6">
+            <div class="input-group mb-3">
+              <input
+                type="file"
+                class="form-control"
+                id="photo"
+                name="image"
+                required
+              />
+              <label class="input-group-text" for="photo">Image</label>
+            </div>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary submit">
+              Register Complaint
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

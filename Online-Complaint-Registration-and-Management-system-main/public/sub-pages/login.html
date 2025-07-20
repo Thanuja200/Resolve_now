@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FixIt | Login</title>
+    <!-- bootstarp-cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon" />
+    <style>
+      .row .col {
+        display: flex;
+        justify-content: center;
+      }
+      body {
+        background-color: rgb(233, 233, 233);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cards">
+      <div class="row pt-5">
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <img
+              src="../images/login/user.png"
+              class="card-img-top mt-4"
+              alt="user"
+            />
+            <div class="card-body">
+              <h5 class="card-title">User Login | Signup</h5>
+              <p>Don't have an account Signup,</p>
+              <a href="./user/login.html" class="btn btn-primary btn-sm">Login</a>
+              <a href="./user/signup.html" class="btn btn-outline-primary btn-sm ms-3">Signup</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <img
+              src="../images/login/officer.png"
+              class="card-img-top"
+              alt="officer"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Officer Login</h5>
+              <p>Restrict for User</p>
+
+              <a href="./officer/login.html" class="btn btn-outline-primary" style="width: 100%">Login</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <img
+              src="../images//login/admin.png"
+              class="card-img-top"
+              alt="admin"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Admin Login</h5>
+              <p> Restrict for User | Officer</p>
+              <a href="./admin/login.html" class="btn btn-outline-info" style="width: 100%">Login</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

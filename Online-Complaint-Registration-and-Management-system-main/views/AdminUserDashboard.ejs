@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FixIt | Online-Complaint-Registration-and-Management-system</title>
+    <!-- icon -->
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+        <style>
+              .complaints {
+        padding: 1% 23%;
+        border-radius: 10px;
+        background: #e7eefd4e;
+        box-shadow: 20px 20px 40px #bababa, -20px -20px 40px #ffffff;
+      }
+
+      .complaints .complaint {
+        margin: 5% 0;
+      }
+        </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark"">
+            <div class=" container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item pt-1 pe-4">
+
+                    <a class="nav-link active">
+                        <form action="/admin-return-dashboard" method="post"><button type="submit"
+                                class="btn btn-outline-light btn-sm">Dashboard</button>
+                        </form>
+                    </a>
+                </li>
+                
+                <li class="nav-item pt-1 pe-4">
+                    <a class="nav-link active" href="/admin/appoint-officer">Appoint Officer</a>
+                </li>
+            </ul>
+            <a>
+                <button class="btn btn-outline-light logout_btn" type="submit">
+                    Logout
+                </button>
+            </a>
+        </div>
+        </div>
+
+    </nav>
+    <div class="userdetails container my-2 d-flex justify-content-start" >
+        <div style="border: 1px solid blue; border-radius: 10px;" class="p-2">
+            <h6>User Id : <span style="color: rgba(60, 59, 59, 0.813);"><%= userDetails.userId %></span></h5>
+            <h6>User Name : <span style="color: rgba(60, 59, 59, 0.813);"><%= userDetails.username %></span></h5>
+            <h6>User email : <span style="color: rgba(60, 59, 59, 0.813);"><%= userDetails.email %></span></h5>
+        </div>
+    </div>
+   <div class="container d-flex justify-content-center mt-2">
+      <div class="complaints">
+            <% if (complaints.length==0) { %>
+        <div>No Complaints Registered ⚠️</div>
+        <% } else { %> <% complaints.forEach(e=> { %>
+        <div class="complaint">
+          <div class="date">
+            <h6 style="letter-spacing: 1px; font-size: 12px; color: gray"><%= e.date %></h6>
+          </div>
+          <div class="card" style="width: 22rem">
+            <img src="<%= e.imageURL%>" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text">
+                <span style="font-weight: 500">Address : <%= e.address %></span>
+                
+                <a href="<%= e.gMapURL %>"><i class="bi bi-geo-alt"></i></a>
+              </p>
+              <button type="button" class="btn btn-outline-dark btn-sm">
+                Approval : <span><%= e.approvalStatus %></span>
+                <!-- ~, yes,no -->
+              </button>
+              <button type="button" class="btn btn-outline-success btn-sm">
+                Work Status : <span><%= e.workStatus %></span>
+                <!-- started,finished -->
+              </button>
+              <h6 class="my-3">
+                Officer Appointed :
+                <span style="font-weight: 400"
+                  ><a href="" style="text-decoration: none">
+                    <!-- Redirect to Officers Profile -->
+                    <%= e.officerAppointed%>
+                  </a></span
+                >
+              </h6>
+           
+              <div class="delete-complaint d-flex justify-content-end">
+                <form action="/delete-complaint/<%=e.id%>" method="post" >
+                  <button type="submit" class="btn btn-dark btn-sm" name="dashboard" value="AdminUserDashboard">Delete <i class="bi bi-trash"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+                <% }) %> <% } %>
+
+      </div>
+    </div>
+                           <script>
+        let logout_btn = document.querySelector(".logout_btn")
+        logout_btn.addEventListener("click", () => {
+            window.location.replace("/sub-pages/login.html");
+        }
+        )
+    </script>
+</body>
+
+</html>
